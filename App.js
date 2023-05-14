@@ -2,7 +2,9 @@ import { FlatList, ScrollView, StyleSheet, Text, View, SectionList } from 'react
 import AppHeader from './AppHeader';
 import AppFooter from './AppFooter';
 import Login from './Login';
-
+function sayHello() {
+  alert('You clicked me!');
+}
 const allVehicles = [ 
   {
     "type": "Sedan",
@@ -73,6 +75,7 @@ const renderVehicleModelItem = ({ item }) => {
     </View>
   );
 }  
+
   
 // Separator separates items. We're only using an empty view with border for now
 const itemSeparatorComponent = () => <View style={{ borderColor: 'black', borderStyle: "dotted", borderWidth: 1 }}></View>;
@@ -80,8 +83,10 @@ const itemSeparatorComponent = () => <View style={{ borderColor: 'black', border
   return (
     // Demo: Section List
     <View style={styles.container}>
-      {/* Attach header component */}
-      <AppHeader />
+      <AppHeader>
+        (header="Baham (باہم)
+           ");
+      </AppHeader>
       <Login />
       <View style={styles.mainContainer}>
         <SectionList 
@@ -92,9 +97,20 @@ const itemSeparatorComponent = () => <View style={{ borderColor: 'black', border
         keyExtractor={(item, index) => item.id * (item.id + index)}
         />
       </View>
-      {/* Attach footer component */}
-      <AppFooter />
-    </View>
+      <div>
+        <label>Enter Feedback : </label>
+        <input type="textare" 
+          name="textValue"
+        />
+      </div>
+      <button onClick={sayHello}>Submit</button>;
+
+      <AppFooter>
+      (header="Copyright: Baham by project Dareecha (2023) - 
+           ",slogan="Karachi Insitute of Economics & Technology");
+      
+      </AppFooter>
+     </View>
   );
 }
 
