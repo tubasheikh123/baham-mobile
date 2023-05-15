@@ -84,9 +84,7 @@ const itemSeparatorComponent = () => <View style={{ borderColor: 'black', border
     // Demo: Section List
     <View style={styles.container}>
       <AppHeader>
-        (header="Baham (باہم)
-           ");
-      </AppHeader>
+        </AppHeader>
       <Login />
       <View style={styles.mainContainer}>
         <SectionList 
@@ -106,9 +104,6 @@ const itemSeparatorComponent = () => <View style={{ borderColor: 'black', border
       <button onClick={sayHello}>Submit</button>;
 
       <AppFooter>
-      (header="Copyright: Baham by project Dareecha (2023) - 
-           ",slogan="Karachi Insitute of Economics & Technology");
-      
       </AppFooter>
      </View>
   );

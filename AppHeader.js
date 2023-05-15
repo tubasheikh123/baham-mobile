@@ -1,10 +1,10 @@
 import { StyleSheet, Text, View } from "react-native";
 
-export default function AppHeader({props}) {
+export default function AppHeader({}) {
     return(
         <View>
             <Text style={styles.header}>
-             {props.header}</Text>
+            Baham (باہم)</Text>
         </View>
     );
 }
