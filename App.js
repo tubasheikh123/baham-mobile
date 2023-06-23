@@ -1,9 +1,19 @@
-import { FlatList, ScrollView, StyleSheet, Text, View, SectionList } from 'react-native';
+import { FlatList, ScrollView, StyleSheet, Text, View, SectionList, Pressable } from 'react-native';
 import AppHeader from './AppHeader';
 import AppFooter from './AppFooter';
 import Login from './Login';
+import * as SQLite from 'expo-sqlite'
 function sayHello() {
   alert('You clicked me!');
+}
+const db= SQLite.openDatabase('baham');
+const CreateTable=()=>
+{
+   db.transaction=(tx =>
+   {
+    tx.executeSql('create table if not exists Blocked_item(id integer primary key not null,type text,name text,capacity integer,image_url not null)'); 
+   }
+   );
 }
 const allVehicles = [ 
   {
@@ -61,7 +71,18 @@ const allVehicles = [
 ]
 
 export default function App() {
+const DeleteItem =id=>
+{  
+   db.transaction=(tx=>
+  {
+    tx.executeSql('insert into Blocked_item(id,name,type) values (?,?,?)',[item.id,item.name,item.type]);
 
+   });
+  {this.setState({
+    data: this.state.data.filter(item => item.id !== id)
+  })}
+ 
+}
 // Render the headers of section. Note that the input prop is section and we're using 'type' attribute inside
 const renderSectionHeader = ({ section }) => {
   return (<Text>{section.type}</Text>);
@@ -71,7 +92,9 @@ const renderSectionHeader = ({ section }) => {
 const renderVehicleModelItem = ({ item }) => {
   return (
     <View>
+      <Pressable onLongPress={(DeleteItem(item.id))}>
       <Text>{item.name} ({item.capacity})</Text>
+       </Pressable>
     </View>
   );
 }  
